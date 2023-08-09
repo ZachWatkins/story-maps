@@ -2,6 +2,59 @@
 <html>
     <head>
         <title>Story Maps</title>
+        <style>
+            /**
+             * Arrange the nested list items in a grid.
+             * The first list item is the first row.
+             * The child list items are the columns.
+             */
+            ol.storymap, ol.storymap * {
+                display: block;
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                list-style-position: inside;
+            }
+            ol.storymap li {
+                display: block;
+                width: 200px;
+                height: 168px;
+                border: 1px solid black;
+                padding: 8px;
+                margin: 8px;
+            }
+            ol.storymap > li {
+                position: relative;
+            }
+            ol.storymap > li ol {
+                position: absolute;
+                top: 100%;
+                left: -8px;
+                width: 200px;
+                height: 168px;
+            }
+            ol.storymap > li > ol > li {
+                position: absolute;
+            }
+            ol.storymap > li > ol > li:nth-child(1) {
+                left: 0;
+            }
+            ol.storymap > li > ol > li:nth-child(2) {
+                left: calc(100% + 24px);
+            }
+            ol.storymap > li > ol > li:after {
+                content: "";
+                display: block;
+                width: calc(100% + 8px);
+                position: absolute;
+                bottom: -10px;
+                left: -4px;
+                border-bottom: 2px solid blue;
+            }
+            ol.storymap > li > ol > li > ol {
+                margin-top: 10px;
+            }
+        </style>
     </head>
     <body>
         <h1>Story Maps</h1>
@@ -36,7 +89,7 @@
 
         <h2>Example</h2>
         <p>"I am a rail safety inspector. I want to receive relevant rail safety reports, so I can prioritize inspections for problem areas."</p>
-        <ol>
+        <ol class="storymap">
             <li>Prioritize inspections for problem areas
                 <ol>
                     <li>Identify what rail safety data is relevant to each inspector.
