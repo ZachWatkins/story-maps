@@ -3,60 +3,71 @@
     <head>
         <title>Story Maps</title>
         <style>
-            /**
-             * Arrange the nested list items in a grid.
-             * The first list item is the first row.
-             * The child list items are the columns.
-             */
-            ol.storymap {
+            body {
+                background-color: #000;
+                color: #FFF;
+            }
+            body {
+                font-size: 16pt;
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 1rem 2rem;
+            }
+            blockquote {
+                border: 1px solid;
+                padding: 1rem;
+            }
+            #show-storymap:checked ~ ol.storymap {
                 font: bold 16pt Arial, Helvetica, sans-serif;
-            }
-            ol.storymap, ol.storymap * {
                 display: block;
+                margin: 0 -8px;
+            }
+            #show-storymap:checked ~ ol.storymap,
+            #show-storymap:checked ~ ol.storymap ol {
                 list-style-type: none;
-                margin: 0;
-                padding: 0;
                 list-style-position: inside;
+                padding: 0;
             }
-            ol.storymap li {
+            #show-storymap:checked ~ ol.storymap ol {
+                margin: 0;
+            }
+            #show-storymap:checked ~ ol.storymap .story {
                 display: block;
-                width: 200px;
+                box-sizing: border-box;
+                min-width: 200px;
                 height: 168px;
-                border: 1px solid black;
+                border: 1px solid;
                 padding: 8px;
-                margin: 8px;
             }
-            ol.storymap > li {
-                position: relative;
+            #show-storymap:checked ~ ol.storymap li.depth-0 {
+                padding: 0 4px;
             }
-            ol.storymap > li ol {
-                position: absolute;
-                top: 100%;
-                left: -8px;
-                width: 200px;
-                height: 168px;
+            #show-storymap:checked ~ ol.storymap .story.depth-1 {
+                max-width: calc(50% - 8px);
+                margin-left: 4px;
+                margin-right: 4px;
+                margin-bottom: 8px;
             }
-            ol.storymap > li > ol > li {
-                position: absolute;
+            #show-storymap:checked ~ ol.storymap li.depth-2 {
+                box-sizing: border-box;
+                max-width: 50%;
+                display: inline-block;
+                vertical-align: top;
+                padding-left: 4px;
+                padding-right: 4px;
             }
-            ol.storymap > li > ol > li:nth-child(1) {
-                left: 0;
+            #show-storymap:checked ~ ol.storymap ol.depth-3 {
+                margin-top: 8px;
             }
-            ol.storymap > li > ol > li:nth-child(2) {
-                left: calc(100% + 24px);
-            }
-            ol.storymap > li > ol > li:after {
+            #show-storymap:checked ~ ol.storymap ol.depth-3::before {
                 content: "";
                 display: block;
-                width: calc(100% + 8px);
-                position: absolute;
-                bottom: -10px;
-                left: -4px;
-                border-bottom: 2px solid blue;
+                border-top: 2px solid;
+                margin-left: -4px;
+                margin-right: -4px;
             }
-            ol.storymap > li > ol > li > ol {
-                margin-top: 10px;
-                font: normal 16pt Arial, Helvetica, sans-serif;
+            #show-storymap:checked ~ ol.storymap .story.depth-5 {
+                margin-top: 8px;
             }
         </style>
     </head>
@@ -93,7 +104,8 @@
 
         <h2>Example</h2>
         <p>"I am a rail safety inspector. I want to receive relevant rail safety reports, so I can prioritize inspections for problem areas."</p>
-        <ol class="storymap">
+        <input type="checkbox" id="show-storymap" checked /><label for="show-storymap">Show Story Map</label><br /><br />
+        <ol id="storymap" class="storymap">
             <li>Prioritize inspections for problem areas
                 <ol>
                     <li>Identify what rail safety data is relevant to each inspector.
@@ -116,5 +128,35 @@
                 </ol>
             </li>
         </ol>
+        <script>
+            const nodes = window.storymap.childNodes;
+            for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].nodeType === 1) {
+                    nodes[i].classList.add('depth-0');
+                    wrapTextNodes(nodes[i].childNodes, 1);
+                }
+            }
+            function wrapTextNodes(nodes, depth) {
+                // Remove empty text nodes.
+                for (var i = 0; i < nodes.length; i++) {
+                    if (nodes[i].nodeType === 3 && nodes[i].nodeValue.trim().length) {
+                        var wrapper = document.createElement('span');
+                        wrapper.classList.add('story');
+                        wrapper.classList.add(`depth-${depth}`);
+                        wrapper.appendChild(nodes[i].cloneNode(true));
+                        wrapper.innerHTML = wrapper.innerHTML.trim();
+                        nodes[i].parentNode.replaceChild(wrapper, nodes[i]);
+                    } else if (nodes[i].nodeType === 1 && nodes[i].childNodes.length) {
+                        nodes[i].classList.add(`depth-${depth}`);
+                        wrapTextNodes(nodes[i].childNodes, depth + 1);
+                    }
+                }
+                for (var i = 0; i < nodes.length; i++) {
+                    if (nodes[i].nodeType === 3 && !nodes[i].nodeValue.trim().length) {
+                        nodes[i].parentNode.removeChild(nodes[i]);
+                    }
+                }
+            }
+        </script>
     </body>
 </html>
