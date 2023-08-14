@@ -1,162 +1,484 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Story Maps</title>
-        <style>
-            body {
-                background-color: #000;
-                color: #FFF;
-            }
-            body {
-                font-size: 16pt;
-                max-width: 800px;
-                margin: 0 auto;
-                padding: 1rem 2rem;
-            }
-            blockquote {
-                border: 1px solid;
-                padding: 1rem;
-            }
-            #show-storymap:checked ~ ol.storymap {
-                font: bold 16pt Arial, Helvetica, sans-serif;
-                display: block;
-                margin: 0 -8px;
-            }
-            #show-storymap:checked ~ ol.storymap,
-            #show-storymap:checked ~ ol.storymap ol {
-                list-style-type: none;
-                list-style-position: inside;
-                padding: 0;
-            }
-            #show-storymap:checked ~ ol.storymap ol {
-                margin: 0;
-            }
-            #show-storymap:checked ~ ol.storymap .story {
-                display: block;
-                box-sizing: border-box;
-                min-width: 200px;
-                height: 168px;
-                border: 1px solid;
-                padding: 8px;
-            }
-            #show-storymap:checked ~ ol.storymap li.depth-0 {
-                padding: 0 4px;
-            }
-            #show-storymap:checked ~ ol.storymap .story.depth-1 {
-                max-width: calc(50% - 8px);
-                margin-left: 4px;
-                margin-right: 4px;
-                margin-bottom: 8px;
-            }
-            #show-storymap:checked ~ ol.storymap li.depth-2 {
-                box-sizing: border-box;
-                max-width: 50%;
-                display: inline-block;
-                vertical-align: top;
-                padding-left: 4px;
-                padding-right: 4px;
-            }
-            #show-storymap:checked ~ ol.storymap ol.depth-3 {
-                margin-top: 8px;
-            }
-            #show-storymap:checked ~ ol.storymap ol.depth-3::before {
-                content: "";
-                display: block;
-                border-top: 2px solid;
-                margin-left: -4px;
-                margin-right: -4px;
-            }
-            #show-storymap:checked ~ ol.storymap .story.depth-5 {
-                margin-top: 8px;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>Story Maps</h1>
-        <blockquote>"Story mapping is a technique that provides the big picture that a pile of stories so often misses. [...] A big picture helps communicate effectively with users, it helps everyone involved avoid building unnecessary features, and it provides an orientation for a coherent user experience. [...] Stories are the building blocks of communication between developers and those who use their work. Story maps organize and structure these building blocks, and thus enhance this communication process — which is the most critical part of software development itself."
-            <cite>Foreword by Martin Fowler</cite> in <cite>User Story Mapping</cite> by Jeff Patton</blockquote>
 
-        <h2>Benefits</h2>
-        <ul>
-            <li><strong>Create a Shared Understanding</strong><br />
-                Story maps give teams a shared understanding of the desired outcomes of the work.</li>
-            <li><strong>Help Prioritize Tasks</strong><br />
-                Story maps help teams consider the value they deliver to people when prioritizing tasks.</li>
-            <li><strong>Help Scope Tasks</strong><br />
-                Story maps help a team align the scope of their individual tasks with the desired outcomes.</li>
-            <li><strong>Reveal Opportunities</strong><br />
-                Story maps reveal opportunities to deliver more value to people while doing less work.</li>
-        </ul>
+<head>
+    <title>Story Maps</title>
+    <style>
+        :root {
+            --gutter-width: 16px;
+            --story-bg: #FFFF99;
+            --story-text-color: #000;
+        }
+        body {
+            background-color: #000;
+            color: #FFF;
+        }
 
-        <h2>Use Cases</h2>
-        <p>If any of the following situations are true for a particular team, project, or task, then story maps may be a good fit.</p>
-        <ol>
-            <li>The project is used by or directly impacts a large number of people in different ways, and the success of the project depends on how well you understand the needs of those people.</li>
-            <li>Cross-functional teams collaborate on the project and would benefit from having a shared understanding of the desired outcomes of the work.</li>
-            <li>The project has many tasks that are able to be delivered separately, and the team would benefit from having a way to prioritize those tasks based on the value they deliver to people.</li>
-            <li>It is unclear when a task is considered complete without understanding the desired outcomes.</li>
-            <li>The team is unsure how to break down a large project into smaller, more manageable pieces.</li>
-            <li>The cost or risk of spending time doing the wrong work is high.</li>
-        </ol>
+        body {
+            font-size: 16pt;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
 
-        <h2>How To Create a Story Map</h2>
-        <p>User story maps are visualized using squares with text arranged in a grid. In the first row, and first column, is a square which describes an activity a person wants to complete. In the second row, a square is placed for each step the person will take in order to complete the activity. Then a horizontal line is drawn beneath the second row. Each row beneath this line will contain tasks to be performed by the team that enable the person to perform the step above the line.</p>
+        blockquote {
+            border: 1px solid;
+            padding: 1rem;
+        }
 
-        <h2>Example</h2>
-        <p>"I am a rail safety inspector. I want to receive relevant rail safety reports, so I can prioritize inspections for problem areas."</p>
-        <input type="checkbox" id="show-storymap" checked /><label for="show-storymap">Show Story Map</label><br /><br />
-        <ol id="storymap" class="storymap">
-            <li>Prioritize inspections for problem areas
-                <ol>
-                    <li>Identify what rail safety data is relevant to each inspector.
-                        <ol>
-                            <li>Identify zone of operation for each inspector.</li>
-                            <li>Identify relevant timeframe.</li>
-                            <li>Identify data set meeting above criteria.</li>
-                            <li>Identify relevant data in that data set.</li>
-                            <li>Identify how the data should be visualized.</li>
-                            <li>Create the report.</li>
-                        </ol>
-                    </li>
-                    <li>Request the report.
-                        <ol>
-                            <li>Upload report to the website.</li>
-                            <li>Link to it on the Reports page.</li>
-                            <li>Ensure inspectors know where to find it.</li>
-                        </ol>
-                    </li>
-                </ol>
-            </li>
-        </ol>
-        <script>
-            const nodes = window.storymap.childNodes;
-            for (var i = 0; i < nodes.length; i++) {
-                if (nodes[i].nodeType === 1) {
-                    nodes[i].classList.add('depth-0');
-                    wrapTextNodes(nodes[i].childNodes, 1);
+        #list-option:not(:checked)~ol.storymap {
+            font: bold 16pt Arial, Helvetica, sans-serif;
+            display: block;
+            margin: 0 calc(0px - var(--gutter-width));
+        }
+
+        #list-option:not(:checked)~ol.storymap,
+        #list-option:not(:checked)~ol.storymap ol {
+            list-style-type: none;
+            list-style-position: inside;
+            padding: 0;
+        }
+
+        #list-option:not(:checked)~ol.storymap ol {
+            margin: 0;
+        }
+
+        #list-option:not(:checked)~ol.storymap .story {
+            display: block;
+            box-sizing: border-box;
+            min-width: 200px;
+            max-width: 240px;
+            height: 168px;
+            border: 1px solid;
+            padding: 24px;
+            position: relative;
+            color: var(--story-text-color);
+            background-color: var(--story-bg);
+        }
+
+        #list-option:not(:checked)~ol.storymap > li {
+            padding: 0 4px;
+        }
+
+        #list-option:not(:checked)~ol.storymap > li > ol {
+            white-space: nowrap;
+        }
+
+        #list-option:not(:checked)~ol.storymap .goal {
+            max-width: calc(50% - var(--gutter-width));
+            margin-left: calc(var(--gutter-width) / 2);
+            margin-right: calc(var(--gutter-width) / 2);
+            margin-bottom: var(--gutter-width);
+            max-width: 240px;
+        }
+
+        #list-option:not(:checked)~ol.storymap > li > ol > li {
+            box-sizing: border-box;
+            max-width: 50%;
+            display: inline-block;
+            vertical-align: top;
+            padding-left: calc(var(--gutter-width) / 2);
+            padding-right: calc(var(--gutter-width) / 2);
+            white-space: normal;
+            position: relative;
+        }
+
+        #list-option:not(:checked)~ol.storymap > li > ol > li > ol {
+            margin-top: var(--gutter-width);
+        }
+
+        #list-option:not(:checked)~ol.storymap > li > ol > li > ol::before {
+            content: "";
+            display: block;
+            border-top: 2px solid;
+            margin-left: calc(var(--gutter-width) / -2);
+            margin-right: calc(var(--gutter-width) / -2);
+        }
+
+        #list-option:not(:checked)~ol.storymap .story.task {
+            margin-top: var(--gutter-width);
+        }
+
+        #list-option:not(:checked)~ol.storymap .story::before {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 4px;
+            font-size: 10pt;
+        }
+
+        /** Show story map category labels */
+        #labels-option:checked~ol.storymap .story.goal::before {
+            content: "GOAL";
+        }
+        #labels-option:checked~ol.storymap .story.step::before {
+            content: "STEP";
+        }
+        #labels-option:checked~ol.storymap .story.step~ol>li>.story::before {
+            content: "TASK";
+        }
+
+        /** Show story map flow labels */
+        #flow-option:checked~ol.storymap .story.step~ol {
+            counter-reset: css-counter 0;
+        }
+
+        #flow-option:checked~ol.storymap .story.step~ol>li>.story {
+            counter-increment: css-counter 1;
+        }
+
+        #flow-option:checked~ol.storymap .story.step~ol>li>.story::before {
+            content: "TASK " counter(css-counter);
+        }
+
+        #flow-option:checked~ol.storymap .story.goal~ol>li:first-child .story.step::before {
+            content: "FIRST";
+        }
+
+        #flow-option:checked~ol.storymap .story.goal~ol>li+li .story.step::before {
+            content: "THEN";
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Story Maps</h1>
+    <blockquote>"Story mapping is a technique that provides the big picture that a pile of stories so often misses.
+        [...] A big picture helps communicate effectively with users, it helps everyone involved avoid building
+        unnecessary features, and it provides an orientation for a coherent user experience. [...] Stories are the
+        building blocks of communication between developers and those who use their work. Story maps organize and
+        structure these building blocks, and thus enhance this communication process — which is the most critical part
+        of software development itself."
+        <cite>Foreword by Martin Fowler</cite> in <cite>User Story Mapping</cite> by Jeff Patton
+    </blockquote>
+
+    <h2>What are Story Maps?</h2>
+    <p>User story maps are a visualization of goals, steps, and tasks as squares with text arranged in a grid. In the first row, and first column, is a square which describes an activity a person wants to complete. In the second row, a square is placed for each step the person will take in order to complete the activity. Then a horizontal line is drawn beneath the second row. Each row beneath this line will contain tasks to be performed by the team that enable the person to perform the step above the line.</p>
+
+    <h2>Benefits</h2>
+    <ul>
+        <li><strong>Create Shared Understanding</strong><br />
+            Story maps give teams a shared understanding of the desired outcomes of the work.</li>
+        <li><strong>Prioritize Tasks</strong><br />
+            Story maps help teams consider the value they deliver to people when prioritizing tasks.</li>
+        <li><strong>Scope Tasks</strong><br />
+            Story maps help a team align the scope of their individual tasks with the desired outcomes.</li>
+        <li><strong>Discover Opportunities</strong><br />
+            Story maps reveal opportunities to deliver more value to people while doing less work.</li>
+        <li><strong>Flexible Planning</strong><br />
+            Story maps provide acceptance criteria alongside tasks, making it easier to change either as a team.</li>
+    </ul>
+
+    <h2>Use Cases</h2>
+    <p>If any of the following situations are true for a particular team, project, or goal, then story maps may be a
+        good fit.</p>
+    <ol>
+        <li>The project is used by or directly impacts a large number of people in different ways, and the success of
+            the project depends on how well you understand the needs of those people.</li>
+        <li>Cross-functional teams collaborate on the project and would benefit from having a shared understanding of
+            the desired outcomes of the work.</li>
+        <li>The project has many tasks that are able to be delivered separately, and the team would benefit from having
+            a way to prioritize those tasks based on the value they deliver to people.</li>
+        <li>It is unclear when a task is considered complete without understanding the desired outcomes.</li>
+        <li>The team is unsure how to break down a large project into smaller, more manageable pieces.</li>
+        <li>The cost or risk of spending time doing the wrong work is high.</li>
+        <li>When the right solution will likely come from collaboration between people with varying expertise.</li>
+    </ol>
+
+    <p>When creating a story map talking things over as a team from the start, you may find it helpful to discuss it in steps:</p>
+    <ol>
+        <li>Frame the problem: who is it for and why are we building it?</li>
+        <li>Map the big picture: breadth, not depth; mile wide, inch deep</li>
+        <li>Explore: talk about the people and what might go wrong, joys, pains</li>
+        <li>Slice out a release strategy: focus on the people you're serving and plan the order of features by impact on business goals</li>
+        <li>Slice out a learning strategy: what features to implement or pilot with users earlier to confirm assumptions before building upon them</li>
+        <li>Slice out a development strategy: what to build earlier which may require experimentation, and what to build later; plan what technical challenges need to be determined and resolved sooner rather than later</li>
+    </ol>
+
+    <h2>Example</h2>
+    <p>"I am a rail safety inspector. I want to receive relevant rail safety reports, so I can prioritize inspections for problem areas."</p>
+    <input type="radio" id="list-option" name="display-option" value="list" checked>
+    <label for="list-option">List</label>
+
+    <input type="radio" id="storymap-option" name="display-option" value="storymap">
+    <label for="storymap-option">Story Map</label>
+
+    <input type="radio" id="labels-option" name="display-option" value="labels">
+    <label for="labels-option">Labels</label>
+
+    <input type="radio" id="flow-option" name="display-option" value="flow">
+    <label for="flow-option">Flow</label>
+    <br /><br />
+    <ol id="storymap">
+        <li>"I want to view relevant rail safety reports so I can prioritize my work."
+            <ol>
+                <li>"I identify what rail safety data is relevant to my work."
+                    <ol>
+                        <li>Identify zone of operation for each inspector.</li>
+                        <li>Identify relevant timeframe.</li>
+                        <li>Identify data set meeting above criteria.</li>
+                        <li>Identify relevant data in that data set.</li>
+                        <li>Identify how the data should be visualized.</li>
+                        <li>Create the report.</li>
+                    </ol>
+                </li>
+                <li>"I request the report."
+                    <ol>
+                        <li>Upload report to the website.</li>
+                        <li>Link to it on the Reports page.</li>
+                        <li>Ensure inspectors know where to find it.</li>
+                    </ol>
+                </li>
+            </ol>
+        </li>
+    </ol>
+    <script>
+        /**{
+         * Apply changes to a list element to make it a story map.
+         * Remove empty text nodes. (This is necessary because empty text nodes make the layout inconsistent.)
+         * Wrap text nodes in a span.story element.
+         * Wrap the topmost text node in a span.story.goal element.
+         * The second level of text nodes should be wrapped in a span.story.step element.
+         * The third level of text nodes should be wrapped in a span.story.task element.
+         * @param {HTMLElement} root - The root list element of the story map.
+         */
+        function StoryMap(root) {
+            this.original = root.cloneNode(true);
+            this.root = root;
+            this.root.classList.add('storymap');
+            this.setStoryProps();
+            this.removeEmptyTextNodes();
+            this.wrapGoal();
+            this.wrapSteps();
+            this.wrapTasks();
+            this.makeDraggable();
+            this.observeEditable();
+            this.observeAddRemoveButtons();
+        }
+        StoryMap.prototype = {
+            /**
+             * Restore the original HTML.
+             * @return void
+             */
+            restore: function () {
+                this.root.parentNode.replaceChild(this.original, this.root);
+            },
+            /**
+             * Delete all empty text nodes in the root element recursively.
+             * @return void
+             */
+            removeEmptyTextNodes: function () {
+                this.root.innerHTML = this.root.innerHTML.replace(/\n?\s\s+/g, '');
+            },
+            /**
+             * Wrap goal description in a span.goal element.
+             * @return void
+             */
+            wrapGoal: function () {
+                this.goal = document.createElement('span');
+                this.goal.classList.add('story', 'goal');
+                this.goal.style.cssText = this.story.style;
+                this.goal.appendChild(this.root.childNodes[0].childNodes[0].cloneNode(true));
+                this.root.childNodes[0].replaceChild(this.goal, this.root.childNodes[0].childNodes[0]);
+            },
+            /**
+             * Wrap steps to the goal.
+             * @return void
+             */
+            wrapSteps: function () {
+                const steps = this.root.querySelectorAll(':scope > li > ol > li');
+                for (var i = 0; i < steps.length; i++) {
+                    const step = document.createElement('span');
+                    step.classList.add('story', 'step');
+                    step.style.cssText = this.story.style;
+                    step.appendChild(steps[i].childNodes[0].cloneNode(true));
+                    steps[i].replaceChild(step, steps[i].childNodes[0]);
                 }
-            }
-            function wrapTextNodes(nodes, depth) {
-                // Remove empty text nodes.
-                for (var i = 0; i < nodes.length; i++) {
-                    if (nodes[i].nodeType === 3 && nodes[i].nodeValue.trim().length) {
-                        var wrapper = document.createElement('span');
-                        wrapper.classList.add('story');
-                        wrapper.classList.add(`depth-${depth}`);
-                        wrapper.appendChild(nodes[i].cloneNode(true));
-                        wrapper.innerHTML = wrapper.innerHTML.trim();
-                        nodes[i].parentNode.replaceChild(wrapper, nodes[i]);
-                    } else if (nodes[i].nodeType === 1 && nodes[i].childNodes.length) {
-                        nodes[i].classList.add(`depth-${depth}`);
-                        wrapTextNodes(nodes[i].childNodes, depth + 1);
+            },
+            /**
+             * Wrap tasks.
+             * @return void
+             */
+            wrapTasks: function () {
+                const tasks = this.root.querySelectorAll(':scope > li > ol > li > ol > li');
+                for (var i = 0; i < tasks.length; i++) {
+                    const task = document.createElement('span');
+                    task.classList.add('story', 'task');
+                    task.style.cssText = this.story.style;
+                    task.appendChild(tasks[i].childNodes[0].cloneNode(true));
+                    tasks[i].replaceChild(task, tasks[i].childNodes[0]);
+                }
+            },
+            /**
+             * Set the width and height of each story card based on the browser window size, minimum width, maximum width, and aspect ratio.
+             * @return void
+             */
+             setStoryProps: function () {
+                const minWidth = 240;
+                const maxWidth = 300;
+                const aspectRatio = 2 / 3;
+                const width = Math.max(minWidth, Math.min(maxWidth, Math.round(window.innerWidth / 3)));
+                this.story = {
+                    width: width,
+                    height: Math.round(width * aspectRatio),
+                    style: `width: ${width}px; height: ${Math.round(width * aspectRatio)}px; overflow: hidden;`,
+                };
+            },
+            /**
+             * Make each story card draggable.
+             * @return void
+             */
+            makeDraggable: function () {
+                let dragging;
+                const stories = this.root.querySelectorAll('.story');
+                for (let i = 0; i < stories.length; i++) {
+                    stories[i].draggable = true;
+                }
+                function isDraggable(element) {
+                    return element.classList.contains('story') && !element.classList.contains('goal');
+                }
+                this.root.addEventListener("dragstart", (event) => {
+                    if (isDraggable(event.srcElement)) {
+                        dragging = event.srcElement;
+                        event.dataTransfer.setData("text/plain", event.srcElement.innerHTML);
+                        event.dataTransfer.effectAllowed = "move";
                     }
-                }
-                for (var i = 0; i < nodes.length; i++) {
-                    if (nodes[i].nodeType === 3 && !nodes[i].nodeValue.trim().length) {
-                        nodes[i].parentNode.removeChild(nodes[i]);
+                });
+                this.root.addEventListener("dragover", (event) => {
+                    if (isDraggable(event.srcElement) && event.dataTransfer.effectAllowed === "move") {
+                        event.preventDefault();
+                        event.dataTransfer.dropEffect = "move";
                     }
+                });
+                this.root.addEventListener("drop", (event) => {
+                    if (isDraggable(event.srcElement) && event.dataTransfer.effectAllowed === "move") {
+                        event.preventDefault();
+                        dragging.innerHTML = event.srcElement.innerHTML;
+                        event.srcElement.innerHTML = event.dataTransfer.getData("text/plain");
+                        dragging = null;
+                    }
+                });
+            },
+            /**
+             * Make each text node editable.
+             * @return void
+             */
+            observeEditable: function () {
+                this.editing = false;
+                this.root.addEventListener("click", (event) => {
+                    if (!this.editing && event.target.classList.contains("story")) {
+                        this.editing = true;
+                        const stories = this.root.querySelectorAll('.story');
+                        for (let i = 0; i < stories.length; i++) {
+                            stories[i].contentEditable = true;
+                        }
+                        event.target.focus();
+                    }
+                });
+                this.root.addEventListener("blur", (event) => {
+                    if (this.editing && event.target.classList.contains("story")) {
+                        this.editing = false;
+                        const stories = this.root.querySelectorAll('.story');
+                        for (let i = 0; i < stories.length; i++) {
+                            stories[i].contentEditable = false;
+                        }
+                    }
+                });
+            },
+            /**
+             * Create buttons to add or delete a step or task.
+             * @return void
+             */
+            observeAddRemoveButtons: function () {
+                const buttonsWrapper = document.createElement('div');
+                buttonsWrapper.classList.add('buttons', 'add-remove-buttons');
+                buttonsWrapper.style.cssText = 'position: relative';
+
+                const addButton = document.createElement('button');
+                addButton.classList.add('add');
+                addButton.innerHTML = 'ADD';
+                addButton.style.cssText = "position: absolute; top: 0; right: 0;";
+                addButton.addEventListener("click", (event) => {
+                    if (event.target.parentNode.previousSibling.classList.contains('step')) {
+                        this.addStepAfter(event.target.parentNode.parentNode);
+                    } else if (event.target.parentNode.previousSibling.classList.contains('task')) {
+                        this.addTaskAfter(event.target.parentNode.parentNode);
+                    }
+                });
+
+                const removeButton = document.createElement('button');
+                removeButton.classList.add('remove');
+                removeButton.innerHTML = 'DELETE';
+                removeButton.style.cssText = "position: absolute; top: 0; left: 0;";
+                removeButton.addEventListener("click", (event) => {
+                    if (event.target.parentNode.previousSibling.classList.contains('step')) {
+                        this.removeStep(event.target.parentNode.parentNode);
+                    } else if (event.target.parentNode.previousSibling.classList.contains('task')) {
+                        this.removeTask(event.target.parentNode.parentNode);
+                    }
+                });
+
+                buttonsWrapper.appendChild(addButton);
+                buttonsWrapper.appendChild(removeButton);
+
+                this.root.addEventListener("click", (event) => {
+                    if (event.target.classList.contains("story") && !event.target.classList.contains("goal")) {
+                        event.target.parentNode.insertBefore(buttonsWrapper, event.target.nextSibling);
+                    }
+                });
+            },
+            /**
+             * Add a step.
+             * @param {HTMLElement} step - The step to add a new step after.
+             * @return void
+             */
+            addStepAfter: function (step) {
+                const newStep = document.createElement('li');
+                if (this.editing) {
+                    newStep.innerHTML = `<span class="story step" draggable="true" contenteditable="true"></span><ol><li><span class="story task" draggable="true" style="width: ${this.story.width}px; height: ${this.story.height}px;"></span></li></ol>`;
+                } else {
+                    newStep.innerHTML = `<span class="story step" draggable="true"></span><ol><li><span class="story task" draggable="true" style="width: ${this.story.width}px; height: ${this.story.height}px;"></span></li></ol>`;
                 }
-            }
-        </script>
-    </body>
+                if (step.nextSibling) {
+                    step.parentNode.insertBefore(newStep, step.nextSibling);
+                } else {
+                    step.parentNode.appendChild(newStep);
+                }
+            },
+            /**
+             * Add a task.
+             * @param {HTMLElement} task - The task to add a new task after.
+             * @return void
+             */
+            addTaskAfter: function (task) {
+                const newTask = document.createElement('li');
+                newTask.innerHTML = '<span class="story task" draggable="true"></span>';
+                if (task.nextSibling) {
+                    task.parentNode.insertBefore(newTask, task.nextSibling);
+                } else {
+                    task.parentNode.appendChild(newTask);
+                }
+            },
+            /**
+             * Remove a step.
+             * @param {HTMLElement} step - The step to remove.
+             * @return void
+             */
+            removeStep: function (step) {
+                step.parentNode.removeChild(step);
+            },
+            /**
+             * Remove a task.
+             * @param {HTMLElement} task - The task to remove.
+             * @return void
+             */
+            removeTask: function (task) {
+                task.parentNode.removeChild(task);
+            },
+        };
+        new StoryMap(window.storymap);
+    </script>
+</body>
+
 </html>
