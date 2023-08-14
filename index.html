@@ -258,11 +258,19 @@
         }
         StoryMap.prototype = {
             /**
-             * Restore the original HTML.
+             * Set the width and height of each story card based on the browser window size, minimum width, maximum width, and aspect ratio.
              * @return void
              */
-            restore: function () {
-                this.root.parentNode.replaceChild(this.original, this.root);
+             setStoryProps: function () {
+                const minWidth = 240;
+                const maxWidth = 300;
+                const aspectRatio = 2 / 3;
+                const width = Math.max(minWidth, Math.min(maxWidth, Math.round(window.innerWidth / 3)));
+                this.story = {
+                    width: width,
+                    height: Math.round(width * aspectRatio),
+                    style: `width: ${width}px; height: ${Math.round(width * aspectRatio)}px; overflow: hidden;`,
+                };
             },
             /**
              * Delete all empty text nodes in the root element recursively.
@@ -277,6 +285,7 @@
              */
             wrapGoal: function () {
                 this.goal = document.createElement('span');
+                // this.goal.tabIndex = 1;
                 this.goal.classList.add('story', 'goal');
                 this.goal.style.cssText = this.story.style;
                 this.goal.appendChild(this.root.childNodes[0].childNodes[0].cloneNode(true));
@@ -290,6 +299,7 @@
                 const steps = this.root.querySelectorAll(':scope > li > ol > li');
                 for (var i = 0; i < steps.length; i++) {
                     const step = document.createElement('span');
+                    // step.tabIndex = i + 2;
                     step.classList.add('story', 'step');
                     step.style.cssText = this.story.style;
                     step.appendChild(steps[i].childNodes[0].cloneNode(true));
@@ -301,29 +311,19 @@
              * @return void
              */
             wrapTasks: function () {
-                const tasks = this.root.querySelectorAll(':scope > li > ol > li > ol > li');
-                for (var i = 0; i < tasks.length; i++) {
-                    const task = document.createElement('span');
-                    task.classList.add('story', 'task');
-                    task.style.cssText = this.story.style;
-                    task.appendChild(tasks[i].childNodes[0].cloneNode(true));
-                    tasks[i].replaceChild(task, tasks[i].childNodes[0]);
+                const steps = this.root.querySelectorAll(':scope > li > ol > li');
+                // let tabIndex = steps.length + 2;
+                for (let i = 0; i < steps.length; i++) {
+                    const tasks = steps[i].querySelectorAll(':scope > ol > li');
+                    for (let j = 0; j < tasks.length; j++) {
+                        const task = document.createElement('span');
+                        // task.tabIndex = tabIndex++;
+                        task.classList.add('story', 'task');
+                        task.style.cssText = this.story.style;
+                        task.appendChild(tasks[j].childNodes[0].cloneNode(true));
+                        tasks[j].replaceChild(task, tasks[j].childNodes[0]);
+                    }
                 }
-            },
-            /**
-             * Set the width and height of each story card based on the browser window size, minimum width, maximum width, and aspect ratio.
-             * @return void
-             */
-             setStoryProps: function () {
-                const minWidth = 240;
-                const maxWidth = 300;
-                const aspectRatio = 2 / 3;
-                const width = Math.max(minWidth, Math.min(maxWidth, Math.round(window.innerWidth / 3)));
-                this.story = {
-                    width: width,
-                    height: Math.round(width * aspectRatio),
-                    style: `width: ${width}px; height: ${Math.round(width * aspectRatio)}px; overflow: hidden;`,
-                };
             },
             /**
              * Make each story card draggable.
@@ -422,9 +422,17 @@
                 buttonsWrapper.appendChild(addButton);
                 buttonsWrapper.appendChild(removeButton);
 
-                this.root.addEventListener("click", (event) => {
-                    if (event.target.classList.contains("story") && !event.target.classList.contains("goal")) {
-                        event.target.parentNode.insertBefore(buttonsWrapper, event.target.nextSibling);
+
+
+                this.root.addEventListener("focusin", (event) => {
+                    if (event.target.classList.contains("story")) {
+                        if (event.target.classList.contains("goal")) {
+                            if (buttonsWrapper.parentNode) {
+                                buttonsWrapper.parentNode.removeChild(buttonsWrapper);
+                            }
+                        } else {
+                            event.target.parentNode.insertBefore(buttonsWrapper, event.target.nextSibling);
+                        }
                     }
                 });
             },
@@ -435,11 +443,9 @@
              */
             addStepAfter: function (step) {
                 const newStep = document.createElement('li');
-                if (this.editing) {
-                    newStep.innerHTML = `<span class="story step" draggable="true" contenteditable="true"></span><ol><li><span class="story task" draggable="true" style="width: ${this.story.width}px; height: ${this.story.height}px;"></span></li></ol>`;
-                } else {
-                    newStep.innerHTML = `<span class="story step" draggable="true"></span><ol><li><span class="story task" draggable="true" style="width: ${this.story.width}px; height: ${this.story.height}px;"></span></li></ol>`;
-                }
+                const editable = this.editing ? ' contenteditable="true"' : '';
+                newStep.innerHTML = `<span class="story step" draggable="true"${editable} style="${this.story.style}"></span><ol><li><span class="story task" draggable="true"${editable} style="${this.story.style}"></span></li></ol>`;
+                console.log(newStep.innerHTML, newStep);
                 if (step.nextSibling) {
                     step.parentNode.insertBefore(newStep, step.nextSibling);
                 } else {
@@ -453,7 +459,8 @@
              */
             addTaskAfter: function (task) {
                 const newTask = document.createElement('li');
-                newTask.innerHTML = '<span class="story task" draggable="true"></span>';
+                const editable = this.editing ? ' contenteditable="true"' : '';
+                newTask.innerHTML = `<span class="story task" draggable="true"${editable} style="${this.story.style}></span>`;
                 if (task.nextSibling) {
                     task.parentNode.insertBefore(newTask, task.nextSibling);
                 } else {
