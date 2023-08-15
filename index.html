@@ -198,10 +198,10 @@
 
     <h2>Example</h2>
     <p>"I am a rail safety inspector. I want to receive relevant rail safety reports, so I can prioritize inspections for problem areas."</p>
-    <input type="radio" id="list-option" name="display-option" value="list" checked>
+    <input type="radio" id="list-option" name="display-option" value="list">
     <label for="list-option">List</label>
 
-    <input type="radio" id="storymap-option" name="display-option" value="storymap">
+    <input type="radio" id="storymap-option" name="display-option" value="storymap" checked>
     <label for="storymap-option">Story Map</label>
 
     <input type="radio" id="labels-option" name="display-option" value="labels">
@@ -393,12 +393,14 @@
             observeAddRemoveButtons: function () {
                 const buttonsWrapper = document.createElement('div');
                 buttonsWrapper.classList.add('buttons', 'add-remove-buttons');
-                buttonsWrapper.style.cssText = 'position: relative';
+                buttonsWrapper.style.cssText = 'position: relative; height: 1px; margin-bottom: -1px; text-align: right; padding-right: 3px;';
+
+                const buttonStyles = "display: inline-block; padding: 0; margin-left: 2px; font: bold 18pt/1px monospace; width: 20px; height: 20px; vertical-align: middle; text-align: center; box-sizing: border-box; position: relative; top: -27px; background-color: #000; color: #FFF;";
 
                 const addButton = document.createElement('button');
                 addButton.classList.add('add');
-                addButton.innerHTML = 'ADD';
-                addButton.style.cssText = "position: absolute; top: 0; right: 0;";
+                addButton.innerHTML = '&#x2b;';
+                addButton.style.cssText = buttonStyles;
                 addButton.addEventListener("click", (event) => {
                     if (event.target.parentNode.previousSibling.classList.contains('step')) {
                         this.addStepAfter(event.target.parentNode.parentNode);
@@ -407,10 +409,20 @@
                     }
                 });
 
+                const nextStepButton = document.createElement('button');
+                nextStepButton.classList.add('next-step');
+                nextStepButton.innerHTML = '&#x2192;';
+                nextStepButton.style.cssText = buttonStyles;
+                nextStepButton.addEventListener("click", (event) => {
+                    if (event.target.parentNode.parentNode.nextSibling) {
+                        event.target.parentNode.parentNode.nextSibling.childNodes[0].focus();
+                    }
+                });
+
                 const removeButton = document.createElement('button');
                 removeButton.classList.add('remove');
-                removeButton.innerHTML = 'DELETE';
-                removeButton.style.cssText = "position: absolute; top: 0; left: 0;";
+                removeButton.innerHTML = '&#xd7;';
+                removeButton.style.cssText = buttonStyles;
                 removeButton.addEventListener("click", (event) => {
                     if (event.target.parentNode.previousSibling.classList.contains('step')) {
                         this.removeStep(event.target.parentNode.parentNode);
@@ -420,6 +432,7 @@
                 });
 
                 buttonsWrapper.appendChild(addButton);
+                buttonsWrapper.appendChild(nextStepButton);
                 buttonsWrapper.appendChild(removeButton);
 
 
