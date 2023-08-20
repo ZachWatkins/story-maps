@@ -54,7 +54,7 @@ async function copyFile(item) {
     return `+ ${destFile}`;
 }
 
-const results = Promise.allSettled(pipeline.map(copyFile)).then((results) => {
+Promise.allSettled(pipeline.map(copyFile)).then((results) => {
     results.forEach((result) => {
         console.log(result.value);
     });
