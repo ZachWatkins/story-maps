@@ -1,3 +1,5 @@
+import './story-map.css';
+
 /**
  * Apply changes to a list element to make it a story map.
  * Remove empty text nodes. (This is necessary because empty text nodes make the layout inconsistent.)
