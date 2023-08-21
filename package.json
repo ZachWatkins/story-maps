@@ -1,0 +1,27 @@
+{
+  "name": "story-maps",
+  "version": "0.1.0",
+  "description": "Story map presentation",
+  "main": "index.html",
+  "scripts": {
+    "start": "vite --open",
+    "build": "vite build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zachwatkins/story-maps.git"
+  },
+  "author": "Zachary K. Watkins",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zachwatkins/story-maps/issues"
+  },
+  "homepage": "https://github.com/zachwatkins/story-maps#readme",
+  "devDependencies": {
+    "prettier": "^3.0.2",
+    "vite": "^4.4.9"
+  },
+  "dependencies": {
+    "reveal.js": "^4.5.0"
+  }
+}
