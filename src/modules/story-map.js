@@ -261,3 +261,5 @@ StoryMap.prototype = {
         task.parentNode.removeChild(task);
     },
 };
+
+export default StoryMap;

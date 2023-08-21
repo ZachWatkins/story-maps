@@ -4,143 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Story Maps</title>
-    <style>
-        :root {
-            --gutter-width: 16px;
-            --story-bg: #FFFF99;
-            --story-text-color: #000;
-        }
-        body {
-            background-color: #000;
-            color: #FFF;
-        }
-
-        body {
-            font-size: 16pt;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-        }
-
-        blockquote {
-            border: 1px solid;
-            padding: 1rem;
-        }
-
-        #list-option:not(:checked)~ol.storymap {
-            font: bold 16pt Arial, Helvetica, sans-serif;
-            display: block;
-            margin: 0 calc(0px - var(--gutter-width));
-        }
-
-        #list-option:not(:checked)~ol.storymap,
-        #list-option:not(:checked)~ol.storymap ol {
-            list-style-type: none;
-            list-style-position: inside;
-            padding: 0;
-        }
-
-        #list-option:not(:checked)~ol.storymap ol {
-            margin: 0;
-        }
-
-        #list-option:not(:checked)~ol.storymap .story {
-            display: block;
-            box-sizing: border-box;
-            min-width: 200px;
-            max-width: 240px;
-            height: 168px;
-            border: 1px solid;
-            padding: 24px;
-            position: relative;
-            color: var(--story-text-color);
-            background-color: var(--story-bg);
-        }
-
-        #list-option:not(:checked)~ol.storymap > li {
-            padding: 0 4px;
-        }
-
-        #list-option:not(:checked)~ol.storymap > li > ol {
-            white-space: nowrap;
-        }
-
-        #list-option:not(:checked)~ol.storymap .goal {
-            max-width: calc(50% - var(--gutter-width));
-            margin-left: calc(var(--gutter-width) / 2);
-            margin-right: calc(var(--gutter-width) / 2);
-            margin-bottom: var(--gutter-width);
-            max-width: 240px;
-        }
-
-        #list-option:not(:checked)~ol.storymap > li > ol > li {
-            box-sizing: border-box;
-            max-width: 50%;
-            display: inline-block;
-            vertical-align: top;
-            padding-left: calc(var(--gutter-width) / 2);
-            padding-right: calc(var(--gutter-width) / 2);
-            white-space: normal;
-            position: relative;
-        }
-
-        #list-option:not(:checked)~ol.storymap > li > ol > li > ol {
-            margin-top: var(--gutter-width);
-        }
-
-        #list-option:not(:checked)~ol.storymap > li > ol > li > ol::before {
-            content: "";
-            display: block;
-            border-top: 2px solid;
-            margin-left: calc(var(--gutter-width) / -2);
-            margin-right: calc(var(--gutter-width) / -2);
-        }
-
-        #list-option:not(:checked)~ol.storymap .story.task {
-            margin-top: var(--gutter-width);
-        }
-
-        #list-option:not(:checked)~ol.storymap .story::before {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 4px;
-            font-size: 10pt;
-        }
-
-        /** Show story map category labels */
-        #labels-option:checked~ol.storymap .story.goal::before {
-            content: "GOAL";
-        }
-        #labels-option:checked~ol.storymap .story.step::before {
-            content: "STEP";
-        }
-        #labels-option:checked~ol.storymap .story.step~ol>li>.story::before {
-            content: "TASK";
-        }
-
-        /** Show story map flow labels */
-        #flow-option:checked~ol.storymap .story.step~ol {
-            counter-reset: css-counter 0;
-        }
-
-        #flow-option:checked~ol.storymap .story.step~ol>li>.story {
-            counter-increment: css-counter 1;
-        }
-
-        #flow-option:checked~ol.storymap .story.step~ol>li>.story::before {
-            content: "TASK " counter(css-counter);
-        }
-
-        #flow-option:checked~ol.storymap .story.goal~ol>li:first-child .story.step::before {
-            content: "FIRST";
-        }
-
-        #flow-option:checked~ol.storymap .story.goal~ol>li+li .story.step::before {
-            content: "THEN";
-        }
-    </style>
 </head>
 
 <body>
@@ -168,7 +31,6 @@
                 </section>
             </div>
         </div>
-        <script src="src/main.js" type="module"></script>
     </div>
 
     <h2>What are Story Maps?</h2>
@@ -251,10 +113,7 @@
             </ol>
         </li>
     </ol>
-    <script src="src/story-map.js"></script>
-    <script>
-        new StoryMap(window.storymap);
-    </script>
+    <script src="src/main.js" type="module"></script>
 </body>
 
 </html>
