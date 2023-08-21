@@ -45,6 +45,43 @@
             </div>
         </div>
     </div>
+    <h2>Example Story Map</h2>
+    <p>"I am a rail safety inspector. I want to receive relevant rail safety reports, so I can prioritize inspections for problem areas."</p>
+    <input type="radio" id="list-option" name="display-option" value="list">
+    <label for="list-option">List</label>
+
+    <input type="radio" id="storymap-option" name="display-option" value="storymap" checked>
+    <label for="storymap-option">Story Map</label>
+
+    <input type="radio" id="labels-option" name="display-option" value="labels">
+    <label for="labels-option">Labels</label>
+
+    <input type="radio" id="flow-option" name="display-option" value="flow">
+    <label for="flow-option">Flow</label>
+    <br /><br />
+    <ol id="storymap">
+        <li>"I want to view relevant rail safety reports so I can prioritize my work."
+            <ol>
+                <li>"I identify what rail safety data is relevant to my work."
+                    <ol>
+                        <li>Identify zone of operation for each inspector.</li>
+                        <li>Identify relevant timeframe.</li>
+                        <li>Identify data set meeting above criteria.</li>
+                        <li>Identify relevant data in that data set.</li>
+                        <li>Identify how the data should be visualized.</li>
+                        <li>Create the report.</li>
+                    </ol>
+                </li>
+                <li>"I request the report."
+                    <ol>
+                        <li>Upload report to the website.</li>
+                        <li>Link to it on the Reports page.</li>
+                        <li>Ensure inspectors know where to find it.</li>
+                    </ol>
+                </li>
+            </ol>
+        </li>
+    </ol>
 
     <h2>What are Story Maps?</h2>
     <p>User story maps are a visualization of goals, steps, and tasks as squares with text arranged in a grid. In the first row, and first column, is a square which describes an activity a person wants to complete. In the second row, a square is placed for each step the person will take in order to complete the activity. Then a horizontal line is drawn beneath the second row. Each row beneath this line will contain tasks to be performed by the team that enable the person to perform the step above the line.</p>
@@ -87,44 +124,6 @@
         <li>Slice out a release strategy: focus on the people you're serving and plan the order of features by impact on business goals</li>
         <li>Slice out a learning strategy: what features to implement or pilot with users earlier to confirm assumptions before building upon them</li>
         <li>Slice out a development strategy: what to build earlier which may require experimentation, and what to build later; plan what technical challenges need to be determined and resolved sooner rather than later</li>
-    </ol>
-
-    <h2>Example</h2>
-    <p>"I am a rail safety inspector. I want to receive relevant rail safety reports, so I can prioritize inspections for problem areas."</p>
-    <input type="radio" id="list-option" name="display-option" value="list">
-    <label for="list-option">List</label>
-
-    <input type="radio" id="storymap-option" name="display-option" value="storymap" checked>
-    <label for="storymap-option">Story Map</label>
-
-    <input type="radio" id="labels-option" name="display-option" value="labels">
-    <label for="labels-option">Labels</label>
-
-    <input type="radio" id="flow-option" name="display-option" value="flow">
-    <label for="flow-option">Flow</label>
-    <br /><br />
-    <ol id="storymap">
-        <li>"I want to view relevant rail safety reports so I can prioritize my work."
-            <ol>
-                <li>"I identify what rail safety data is relevant to my work."
-                    <ol>
-                        <li>Identify zone of operation for each inspector.</li>
-                        <li>Identify relevant timeframe.</li>
-                        <li>Identify data set meeting above criteria.</li>
-                        <li>Identify relevant data in that data set.</li>
-                        <li>Identify how the data should be visualized.</li>
-                        <li>Create the report.</li>
-                    </ol>
-                </li>
-                <li>"I request the report."
-                    <ol>
-                        <li>Upload report to the website.</li>
-                        <li>Link to it on the Reports page.</li>
-                        <li>Ensure inspectors know where to find it.</li>
-                    </ol>
-                </li>
-            </ol>
-        </li>
     </ol>
     <script src="src/main.js" type="module"></script>
 </body>
