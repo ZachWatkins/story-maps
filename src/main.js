@@ -13,5 +13,4 @@ deck.addEventListener( 'centerText', function() {
     deck.configure({center: true})
 }, false )
 
-new StoryMap(window.storymapexample)
 new StoryMap(window.storymap)
