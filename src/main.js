@@ -1,5 +1,5 @@
 import 'reveal.js/dist/reveal.css'
-import 'reveal.js/dist/theme/moon.css'
+import 'reveal.js/dist/theme/beige.css'
 import StoryMap from './modules/story-map.js'
 import Reveal from 'reveal.js'
 
@@ -13,4 +13,5 @@ deck.addEventListener( 'centerText', function() {
     deck.configure({center: true})
 }, false )
 
+new StoryMap(window.storymapexample)
 new StoryMap(window.storymap)
