@@ -217,15 +217,14 @@ StoryMap.prototype = {
         });
     },
     /**
-        * Add a step.
-        * @param {HTMLElement} step - The step to add a new step after.
-        * @return void
-        */
+     * Add a step.
+     * @param {HTMLElement} step - The step to add a new step after.
+     * @return void
+     */
     addStepAfter: function (step) {
         const newStep = document.createElement('li');
         const editable = this.editing ? ' contenteditable="true"' : '';
         newStep.innerHTML = `<span class="story step" draggable="true"${editable} style="${this.story.style}"></span><ol><li><span class="story task" draggable="true"${editable} style="${this.story.style}"></span></li></ol>`;
-        console.log(newStep.innerHTML, newStep);
         if (step.nextSibling) {
             step.parentNode.insertBefore(newStep, step.nextSibling);
         } else {
@@ -233,10 +232,10 @@ StoryMap.prototype = {
         }
     },
     /**
-        * Add a task.
-        * @param {HTMLElement} task - The task to add a new task after.
-        * @return void
-        */
+     * Add a task.
+     * @param {HTMLElement} task - The task to add a new task after.
+     * @return void
+     */
     addTaskAfter: function (task) {
         const newTask = document.createElement('li');
         const editable = this.editing ? ' contenteditable="true"' : '';
@@ -248,18 +247,18 @@ StoryMap.prototype = {
         }
     },
     /**
-        * Remove a step.
-        * @param {HTMLElement} step - The step to remove.
-        * @return void
-        */
+     * Remove a step.
+     * @param {HTMLElement} step - The step to remove.
+     * @return void
+     */
     removeStep: function (step) {
         step.parentNode.removeChild(step);
     },
     /**
-        * Remove a task.
-        * @param {HTMLElement} task - The task to remove.
-        * @return void
-        */
+     * Remove a task.
+     * @param {HTMLElement} task - The task to remove.
+     * @return void
+     */
     removeTask: function (task) {
         task.parentNode.removeChild(task);
     },
