@@ -142,8 +142,9 @@ StoryMap.prototype = {
                 event.target.focus();
             }
         });
-        this.root.addEventListener("blur", (event) => {
-            if (this.editing && event.target.classList.contains("story")) {
+        this.root.addEventListener("keyup", (event) => {
+            // If the escape key is pressed then stop editing.
+            if (this.editing && event.code === 'Escape' && event.target.classList.contains("story")) {
                 this.editing = false;
                 const stories = this.root.querySelectorAll('.story');
                 for (let i = 0; i < stories.length; i++) {
